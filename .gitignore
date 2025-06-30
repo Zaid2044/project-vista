@@ -1,4 +1,36 @@
-venv/
+# 🐍 Python bytecode
 __pycache__/
+*.py[cod]
+*.pyo
+
+# 📦 Virtual environment
+venv/
+venv311/
+
+# 📁 Logs and temp files
 *.log
-*.npy
+*.txt
+*.json
+temp*.wav
+*.db
+
+# 🤖 Face recognition models cache
+~/.face_recognition
+
+# 🧪 Test outputs
+*.test
+*.bak
+
+# 🖼️ OS-specific
+.DS_Store
+Thumbs.db
+
+# 🔧 VS Code settings
+.vscode/
+
+# 🧠 Whisper cache
+whisper_cache/
+
+# 📄 Model downloads (if any)
+*.tflite
+*.onnx
