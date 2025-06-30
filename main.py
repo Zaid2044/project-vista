@@ -1,12 +1,16 @@
 from core.speech import listen, speak
 from core.nlp import get_intent, fallback_response
+from core.dashboard import start_dashboard, update_state
 import datetime
 import webbrowser
 from dotenv import load_dotenv
+
 load_dotenv()
+start_dashboard()
 
 while True:
     user_input = listen()
+    update_state(user_input, intent, response)
     if not user_input:
         speak("Sorry, I didn't catch that.")
         continue
