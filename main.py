@@ -1,13 +1,33 @@
-from core.vision import verify_user
 from core.speech import listen, speak
+from core.nlp import get_intent, fallback_response
+import datetime
+import webbrowser
+from dotenv import load_dotenv
+load_dotenv()
 
-if __name__ == "__main__":
-    if verify_user():
-        speak("Welcome Zaid, how can I help you today?")
-        user_input = listen()
-        if user_input:
-            speak(f"You said: {user_input}")
-        else:
-            speak("Sorry, I didn't catch that.")
+while True:
+    user_input = listen()
+    if not user_input:
+        speak("Sorry, I didn't catch that.")
+        continue
+
+    intent = get_intent(user_input)
+
+    if intent == "get_time":
+        current_time = datetime.datetime.now().strftime("%I:%M %p")
+        speak(f"The current time is {current_time}.")
+
+    elif intent == "get_date":
+        today = datetime.datetime.now().strftime("%A, %B %d, %Y")
+        speak(f"Today's date is {today}.")
+
+    elif intent == "get_name":
+        speak("I'm Project Vista, your AI assistant.")
+
+    elif intent == "open_browser":
+        speak("Opening your browser.")
+        webbrowser.open("https://www.google.com")
+
     else:
-        print("❌ Access Denied.")
+        response = fallback_response(user_input)
+        speak(response)

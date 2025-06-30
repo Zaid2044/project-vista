@@ -34,3 +34,6 @@ whisper_cache/
 # 📄 Model downloads (if any)
 *.tflite
 *.onnx
+
+# 📜 Environment variables
+.env
